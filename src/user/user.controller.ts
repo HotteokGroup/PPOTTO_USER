@@ -45,4 +45,22 @@ export class UserController {
   async modifyUser(@Param('userId', ParseIntPipe) userId: number, @Body() params: ModifyUserRequest) {
     return this.userService.modify({ ...params, userId });
   }
+
+  @Post(':userId/complete-sign-up')
+  @ApiOperation({
+    summary: '회원 가입완료처리',
+    description: `
+    회원의 가입완료처리를 합니다.
+    - 필수정보(닉네임, 비밀번호)가 있는지 확인 후 가입처리합니다.
+    `,
+  })
+  @GenerateSwaggerDocumentByErrorCode([
+    ERROR_CODE.INVALID_DATA,
+    ERROR_CODE.USER_NOT_FOUND,
+    ERROR_CODE.INTERNAL_SERVER_ERROR,
+    ERROR_CODE.USER_NOT_COMPLETED_SIGN_UP,
+  ])
+  async completedSignUp(@Param('userId', ParseIntPipe) userId: number) {
+    return this.userService.completedSignUp({ userId });
+  }
 }

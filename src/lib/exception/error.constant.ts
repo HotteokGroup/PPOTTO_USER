@@ -29,6 +29,7 @@ export const ERROR_CODE = dynamicRecord({
   /**
    * 유저
    */
+  // 유저 공통오류
   USER_ALREADY_EXISTS: {
     errorCode: 'USER_ALREADY_EXISTS',
     message: '이미 가입된 고객입니다.',
@@ -39,9 +40,16 @@ export const ERROR_CODE = dynamicRecord({
     message: '존재하지 않는 고객입니다.',
     status: HttpStatus.BAD_REQUEST,
   },
+  // 회원정보 변경
   USER_NICKNAME_ALREADY_EXISTS: {
     errorCode: 'USER_NICKNAME_ALREADY_EXISTS',
     message: '이미 사용중인 닉네임입니다.',
+    status: HttpStatus.BAD_REQUEST,
+  },
+  // 유저 가입완료 처리
+  USER_NOT_COMPLETED_SIGN_UP: {
+    errorCode: 'USER_NOT_COMPLETED_SIGN_UP',
+    message: '필수데이터가 누락되어 가입이 불가능합니다.',
     status: HttpStatus.BAD_REQUEST,
   },
 });
