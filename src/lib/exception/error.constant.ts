@@ -20,6 +20,11 @@ export const ERROR_CODE = dynamicRecord({
    * 공통
    */
   INVALID_DATA: { errorCode: 'INVALID_DATA', message: '입력값이 올바르지 않습니다.', status: HttpStatus.BAD_REQUEST },
+  INTERNAL_SERVER_ERROR: {
+    errorCode: 'INTERNAL_SERVER_ERROR',
+    message: '서버에 오류가 발생했습니다.',
+    status: HttpStatus.INTERNAL_SERVER_ERROR,
+  },
 
   /**
    * 유저
@@ -27,6 +32,16 @@ export const ERROR_CODE = dynamicRecord({
   USER_ALREADY_EXISTS: {
     errorCode: 'USER_ALREADY_EXISTS',
     message: '이미 가입된 고객입니다.',
+    status: HttpStatus.BAD_REQUEST,
+  },
+  USER_NOT_FOUND: {
+    errorCode: 'USER_NOT_FOUND',
+    message: '존재하지 않는 고객입니다.',
+    status: HttpStatus.BAD_REQUEST,
+  },
+  USER_NICKNAME_ALREADY_EXISTS: {
+    errorCode: 'USER_NICKNAME_ALREADY_EXISTS',
+    message: '이미 사용중인 닉네임입니다.',
     status: HttpStatus.BAD_REQUEST,
   },
 });
