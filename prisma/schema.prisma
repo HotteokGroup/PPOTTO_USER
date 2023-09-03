@@ -13,7 +13,7 @@ datasource db {
 /// 고객 테이블
 model User {
   id                          Int                           @id @default(autoincrement())
-  email                       String                        @unique
+  email                       String
   nickName                    String?                       @unique
   password                    String?
   profileImage                String?

@@ -10,7 +10,6 @@ CREATE TABLE `User` (
     `updatedAt` DATETIME(3) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    UNIQUE INDEX `User_email_key`(`email`),
     UNIQUE INDEX `User_nickName_key`(`nickName`),
     INDEX `nickName`(`nickName`),
     PRIMARY KEY (`id`)
