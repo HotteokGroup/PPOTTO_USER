@@ -15,11 +15,13 @@ export class ModifyUserHandler implements ICommandHandler<ModifyUserCommand, Mod
     const user = await this.prismaService.user.findUnique({ where: { id: userId } });
     if (!user) throw new BadRequestException(ERROR_CODE.USER_NOT_FOUND);
 
-    // 이미 사용중인 이름인 경우
-    const existingUser = await this.prismaService.user.findFirst({
-      where: { nickName: params.nickName, NOT: { id: userId } },
-    });
-    if (existingUser) throw new BadRequestException(ERROR_CODE.USER_NICKNAME_ALREADY_EXISTS);
+    // 닉네임 변경을 요청했을 경우 이미 사용중인 이름인지 확인
+    if (params.nickName) {
+      const existingUser = await this.prismaService.user.findFirst({
+        where: { nickName: params.nickName, NOT: { id: userId } },
+      });
+      if (existingUser) throw new BadRequestException(ERROR_CODE.USER_NICKNAME_ALREADY_EXISTS);
+    }
 
     // 고객정보 수정
     await this.prismaService.user.update({
@@ -28,7 +30,7 @@ export class ModifyUserHandler implements ICommandHandler<ModifyUserCommand, Mod
     });
 
     return {
-      id: userId,
+      userId,
     };
   }
 }

@@ -23,5 +23,5 @@ export class ModifyUserRequest {
 export class ModifyUserResponse {
   @Expose()
   @ApiProperty({ description: '회원 아이디' })
-  id: number;
+  userId: number;
 }

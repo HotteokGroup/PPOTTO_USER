@@ -1,16 +1,19 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { Exclude, Expose } from 'class-transformer';
-import { IsEmail } from 'class-validator';
-
-@Exclude()
 export class CreateUserCommand {
-  @Expose()
-  @IsEmail()
-  @ApiProperty({ description: '가입할 이메일', example: 'test@email.com' })
+  /** 이메일 */
   readonly email: string;
+
+  /** 이름 */
+  readonly nickName: string;
+
+  /** 비밀번호 (평문) */
+  readonly password: string;
+
+  constructor(params: CreateUserCommand) {
+    Object.assign(this, params);
+  }
 }
 
 export class CreateUserCommandResult {
-  @ApiProperty({ description: '생성된 고객 아이디', example: 0 })
+  /** 생성 결과 */
   readonly id: number;
 }
