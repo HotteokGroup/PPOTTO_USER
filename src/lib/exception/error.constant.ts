@@ -71,6 +71,15 @@ export const ERROR_CODE = dynamicRecord({
     message: '인증시간이 만료되었습니다.',
     status: HttpStatus.BAD_REQUEST,
   },
+
+  /**
+   * 약관
+   */
+  TERMS_OF_SERVICE_NOT_FOUND: {
+    errorCode: 'TERMS_OF_SERVICE_NOT_FOUND',
+    message: '존재하지 않는 약관입니다.',
+    status: HttpStatus.NOT_FOUND,
+  },
 });
 
 // 스웨거 Exception Description을 위한 데코레이터
