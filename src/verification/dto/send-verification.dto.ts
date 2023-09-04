@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { UserVerificationType } from '@prisma/client';
+import { Exclude, Expose } from 'class-transformer';
 import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, ValidateIf } from 'class-validator';
 
 export class SendVerificationRequest {
@@ -19,8 +20,9 @@ export class SendVerificationRequest {
   @IsOptional()
   userId?: number;
 }
-
+@Exclude()
 export class SendVerificationResponse {
+  @Expose()
   @ApiProperty({ description: '인증 요청 결과 아이디', example: '123h12hj3j1' })
   @IsNumber()
   id: string;
