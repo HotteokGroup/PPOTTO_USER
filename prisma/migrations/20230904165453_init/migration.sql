@@ -50,8 +50,6 @@ CREATE TABLE `UserTermsOfServiceAgreement` (
     `id` VARCHAR(191) NOT NULL,
     `userId` INTEGER NOT NULL,
     `termsOfServiceId` INTEGER NOT NULL,
-    `isAgreed` BOOLEAN NOT NULL DEFAULT false,
-    `agreedAt` DATETIME(3) NULL,
     `deletedAt` DATETIME(3) NULL,
     `updatedAt` DATETIME(3) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
