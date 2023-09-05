@@ -1,8 +1,9 @@
-import { Controller, Post, Body, Patch, Param, ParseIntPipe } from '@nestjs/common';
+import { Controller, Post, Body, Patch, Param, ParseIntPipe, Get } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { plainToInstance } from 'class-transformer';
 
 import { CreateUserRequest, CreateUserResponse } from './dto/create-user.dto';
+import { GetUserResponse } from './dto/get-user.dto';
 import { ModifyUserRequest } from './dto/modify-user.dto';
 import { UserService } from './user.service';
 import { ERROR_CODE, GenerateSwaggerDocumentByErrorCode } from '../lib/exception/error.constant';
@@ -42,5 +43,19 @@ export class UserController {
   ])
   async modifyUser(@Param('userId', ParseIntPipe) userId: number, @Body() params: ModifyUserRequest) {
     return this.userService.modify({ ...params, userId });
+  }
+
+  @Get(':userId')
+  @ApiOperation({
+    summary: '회원정보 & 약관동의정보 조회',
+    description: '회원의 정보를 조회합니다.',
+  })
+  @GenerateSwaggerDocumentByErrorCode([
+    ERROR_CODE.INTERNAL_SERVER_ERROR,
+    ERROR_CODE.USER_NOT_FOUND,
+    ERROR_CODE.INVALID_DATA,
+  ])
+  async getUserInfo(@Param('userId', ParseIntPipe) userId: number) {
+    return plainToInstance(GetUserResponse, this.userService.getUserInfo(userId));
   }
 }

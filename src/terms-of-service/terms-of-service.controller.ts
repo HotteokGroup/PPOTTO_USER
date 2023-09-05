@@ -1,7 +1,9 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { plainToInstance } from 'class-transformer';
 
 import { AgreeTermsOfServiceRequest } from './dto/agree-terms.dto';
+import { GetTermsOfServiceResponse } from './dto/get-terms.dto';
 import { TermsOfServiceService } from './terms-of-service.service';
 import { ERROR_CODE, GenerateSwaggerDocumentByErrorCode } from '../lib/exception/error.constant';
 
@@ -23,5 +25,12 @@ export class TermsOfServiceController {
   @Post('/agree')
   async agreeTermsOfService(@Body() data: AgreeTermsOfServiceRequest) {
     await this.termsOfServiceService.agreeTermsOfService(data);
+  }
+
+  @ApiOperation({ summary: '약관 리스트', description: '약관 리스트를 가져옵니다.' })
+  @GenerateSwaggerDocumentByErrorCode([ERROR_CODE.INTERNAL_SERVER_ERROR])
+  @Get()
+  async getTermsOfServiceList() {
+    return plainToInstance(GetTermsOfServiceResponse, this.termsOfServiceService.getTermsOfServiceList());
   }
 }

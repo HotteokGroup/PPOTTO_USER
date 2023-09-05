@@ -3,15 +3,17 @@ import { CqrsModule } from '@nestjs/cqrs';
 
 import { CreateUserHandler } from './command/create/create-user.handler';
 import { ModifyUserHandler } from './command/modify/modify-user.handler';
+import { GetUserInfoHandler } from './query/get-user-info/get-user-info.handler';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { PrismaModule } from '../lib/prisma/prisma.module';
 
 const UserCommandHandlerList = [CreateUserHandler, ModifyUserHandler];
+const UserQueryHandlerList = [GetUserInfoHandler];
 
 @Module({
   imports: [PrismaModule, CqrsModule],
   controllers: [UserController],
-  providers: [UserService, ...UserCommandHandlerList],
+  providers: [UserService, ...UserCommandHandlerList, ...UserQueryHandlerList],
 })
 export class UserModule {}
