@@ -21,11 +21,10 @@ CREATE TABLE `UserIdentityVerification` (
     `id` VARCHAR(191) NOT NULL,
     `userId` INTEGER NULL,
     `verificationType` ENUM('EMAIL') NOT NULL,
-    `verificationCode` VARCHAR(191) NOT NULL,
     `emailAddress` VARCHAR(191) NULL,
+    `verificationCode` VARCHAR(191) NOT NULL,
     `failCount` INTEGER NOT NULL DEFAULT 0,
     `verifiedAt` DATETIME(3) NULL,
-    `failedAt` DATETIME(3) NULL,
     `updatedAt` DATETIME(3) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 

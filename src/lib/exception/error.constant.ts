@@ -38,7 +38,7 @@ export const ERROR_CODE = dynamicRecord({
   USER_NOT_FOUND: {
     errorCode: 'USER_NOT_FOUND',
     message: '존재하지 않는 고객입니다.',
-    status: HttpStatus.BAD_REQUEST,
+    status: HttpStatus.NOT_FOUND,
   },
   // 회원정보 변경
   USER_NICKNAME_ALREADY_EXISTS: {
@@ -50,6 +50,25 @@ export const ERROR_CODE = dynamicRecord({
   USER_NOT_COMPLETED_SIGN_UP: {
     errorCode: 'USER_NOT_COMPLETED_SIGN_UP',
     message: '필수데이터가 누락되어 가입이 불가능합니다.',
+    status: HttpStatus.BAD_REQUEST,
+  },
+
+  /**
+   * 인증
+   */
+  VERIFICATION_NOT_FOUND: {
+    errorCode: 'VERIFICATION_NOT_FOUND',
+    message: '존재하지 않는 인증정보입니다.',
+    status: HttpStatus.NOT_FOUND,
+  },
+  VERIFICATION_EXCEED_MAXIMUM_COUNT: {
+    errorCode: 'VERIFICATION_EXCEED_MAXIMUM_COUNT',
+    message: '인증시도 횟수를 초과했습니다.',
+    status: HttpStatus.BAD_REQUEST,
+  },
+  VERIFICATION_EXPIRED: {
+    errorCode: 'VERIFICATION_EXPIRED',
+    message: '인증시간이 만료되었습니다.',
     status: HttpStatus.BAD_REQUEST,
   },
 });

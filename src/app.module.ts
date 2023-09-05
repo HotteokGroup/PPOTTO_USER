@@ -12,11 +12,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ERROR_CODE } from './lib/exception/error.constant';
 import { UserModule } from './user/user.module';
+import { VerificationModule } from './verification/verification.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, envFilePath: `environments/.env.${process.env.NODE_ENV}` }),
     UserModule,
+    VerificationModule,
   ],
   controllers: [AppController],
   providers: [
