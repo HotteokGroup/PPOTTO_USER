@@ -24,6 +24,7 @@ export class ConfirmVerificationHandler
     // 인증기록 조회
     const verification = await this.prismaService.userIdentityVerification.findUnique({ where: { id } });
     if (!verification) throw new NotFoundException(ERROR_CODE.VERIFICATION_NOT_FOUND);
+    if (verification.verifiedAt) throw new BadRequestException(ERROR_CODE.VERIFICATION_ALREADY_VERIFIED);
     // 인증시도 5회 초과
     if (verification.failCount >= this.MAXIMUM_VERIFICATION_COUNT)
       throw new BadRequestException(ERROR_CODE.VERIFICATION_EXCEED_MAXIMUM_COUNT);

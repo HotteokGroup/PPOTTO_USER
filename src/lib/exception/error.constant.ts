@@ -71,6 +71,11 @@ export const ERROR_CODE = dynamicRecord({
     message: '인증시간이 만료되었습니다.',
     status: HttpStatus.BAD_REQUEST,
   },
+  VERIFICATION_ALREADY_VERIFIED: {
+    errorCode: 'VERIFICATION_ALREADY_VERIFIED',
+    message: '이미 인증된 정보입니다.',
+    status: HttpStatus.BAD_REQUEST,
+  },
 
   /**
    * 약관
