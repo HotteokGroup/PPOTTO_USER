@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as nodeMailer from 'nodemailer';
 
-import { MailSenderService } from '../mail.interface';
+import { MailSender } from '../mail.interface';
 
 @Injectable()
-export class SmtpMailSenderService implements MailSenderService {
+export class SmtpMailSenderService implements MailSender {
   private readonly TRANSPORTER: nodeMailer.Transporter;
 
   /** SMTP Host */
