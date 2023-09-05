@@ -38,6 +38,9 @@ dependencies:
   dayjs:
     specifier: ^1.11.9
     version: 1.11.9
+  nodemailer:
+    specifier: ^6.9.4
+    version: 6.9.4
   reflect-metadata:
     specifier: ^0.1.13
     version: 0.1.13
@@ -67,6 +70,9 @@ devDependencies:
   '@types/node':
     specifier: ^20.3.1
     version: 20.5.7
+  '@types/nodemailer':
+    specifier: ^6.4.9
+    version: 6.4.9
   '@types/supertest':
     specifier: ^2.0.12
     version: 2.0.12
@@ -1386,6 +1392,12 @@ packages:
 
   /@types/node@20.5.7:
     resolution: {integrity: sha512-dP7f3LdZIysZnmvP3ANJYTSwg+wLLl8p7RqniVlV7j+oXSXAbt9h0WIBFmJy5inWZoX9wZN6eXx+YXd9Rh3RBA==}
+    dev: true
+
+  /@types/nodemailer@6.4.9:
+    resolution: {integrity: sha512-XYG8Gv+sHjaOtUpiuytahMy2mM3rectgroNbs6R3djZEKmPNiIJwe9KqOJBGzKKnNZNKvnuvmugBgpq3w/S0ig==}
+    dependencies:
+      '@types/node': 20.5.7
     dev: true
 
   /@types/parse-json@4.0.0:
@@ -4735,6 +4747,11 @@ packages:
   /node-releases@2.0.13:
     resolution: {integrity: sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==}
     dev: true
+
+  /nodemailer@6.9.4:
+    resolution: {integrity: sha512-CXjQvrQZV4+6X5wP6ZIgdehJamI63MFoYFGGPtHudWym9qaEHDNdPzaj5bfMCvxG1vhAileSWW90q7nL0N36mA==}
+    engines: {node: '>=6.0.0'}
+    dev: false
 
   /nopt@5.0.0:
     resolution: {integrity: sha512-Tbj67rffqceeLpcRXrT7vKAN8CwfPeIBgM7E6iBkmKLV7bEMwpGgYLGv0jACUsECaa/vuxP0IjEont6umdMgtQ==}
