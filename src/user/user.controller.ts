@@ -4,6 +4,7 @@ import { plainToInstance } from 'class-transformer';
 
 import { CreateUserRequest, CreateUserResponse } from './dto/create-user.dto';
 import { GetUserResponse } from './dto/get-user.dto';
+import { LoginUserByEmailRequest, LoginUserByEmailResponse } from './dto/login-by-email.dto';
 import { ModifyUserRequest } from './dto/modify-user.dto';
 import { UserService } from './user.service';
 import { ERROR_CODE, GenerateSwaggerDocumentByErrorCode } from '../lib/exception/error.constant';
@@ -57,5 +58,19 @@ export class UserController {
   ])
   async getUserInfo(@Param('userId', ParseIntPipe) userId: number) {
     return plainToInstance(GetUserResponse, this.userService.getUserInfo(userId));
+  }
+
+  @Post('login-by-email')
+  @ApiOperation({
+    summary: '이메일 로그인',
+    description: '이메일과 비밀번호로 로그인합니다.',
+  })
+  @GenerateSwaggerDocumentByErrorCode([
+    ERROR_CODE.INVALID_DATA,
+    ERROR_CODE.USER_NOT_FOUND,
+    ERROR_CODE.INTERNAL_SERVER_ERROR,
+  ])
+  async loginByEmail(@Body() params: LoginUserByEmailRequest) {
+    return plainToInstance(LoginUserByEmailResponse, await this.userService.getUserInfoByEmailAndPassword(params));
   }
 }
