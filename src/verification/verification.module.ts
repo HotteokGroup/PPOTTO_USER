@@ -5,12 +5,13 @@ import { ConfirmVerificationHandler } from './command/confirm-verification/confi
 import { SendVerificationHandler } from './command/send-verification/send-verification.handler';
 import { VerificationController } from './verification.controller';
 import { VerificationService } from './verification.service';
+import { MailModule } from '../lib/mail/mail.module';
 import { PrismaModule } from '../lib/prisma/prisma.module';
 
 const verificationCommandHandlers = [SendVerificationHandler, ConfirmVerificationHandler];
 
 @Module({
-  imports: [PrismaModule, CqrsModule],
+  imports: [PrismaModule, CqrsModule, MailModule],
   controllers: [VerificationController],
   providers: [VerificationService, ...verificationCommandHandlers],
 })

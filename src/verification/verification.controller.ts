@@ -30,6 +30,7 @@ export class VerificationController {
     ERROR_CODE.VERIFICATION_NOT_FOUND,
     ERROR_CODE.VERIFICATION_EXCEED_MAXIMUM_COUNT,
     ERROR_CODE.VERIFICATION_EXPIRED,
+    ERROR_CODE.VERIFICATION_EXCEED_MAXIMUM_COUNT,
   ])
   @Post('/confirm')
   async confirmVerification(@Body() data: ConfirmVerificationRequest) {

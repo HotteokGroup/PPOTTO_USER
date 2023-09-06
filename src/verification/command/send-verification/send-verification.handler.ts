@@ -3,13 +3,17 @@ import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 
 import { SendVerificationCommand, SendVerificationCommandResult } from './send-verification.command';
 import { ERROR_CODE } from '../../../lib/exception/error.constant';
+import { SmtpMailSenderService } from '../../../lib/mail/sender/smtp-sender.service';
 import { PrismaService } from '../../../lib/prisma/prisma.service';
 
 @CommandHandler(SendVerificationCommand)
 export class SendVerificationHandler
   implements ICommandHandler<SendVerificationCommand, SendVerificationCommandResult>
 {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly mailService: SmtpMailSenderService,
+  ) {}
 
   async execute(command: SendVerificationCommand): Promise<SendVerificationCommandResult> {
     const { verificationType } = command;
@@ -45,6 +49,7 @@ export class SendVerificationHandler
           emailAddress,
         },
       });
+      await this.mailService.send(emailAddress, 'PPOTTO 에서보낸 인증메일입니다.', `인증번호: ${verificationCode}`);
       return new SendVerificationCommandResult({ id });
     } catch (error) {
       throw new InternalServerErrorException({
