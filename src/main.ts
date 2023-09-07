@@ -1,3 +1,5 @@
+import { writeFileSync } from 'fs';
+
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -19,6 +21,10 @@ async function bootstrap() {
       .build();
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('api', app, document);
+    // 로컬 개발환경의 경우 OpenAPI JSON을 확인할 수 있도록 저장
+    if (environment === 'local') {
+      writeFileSync('open-api/open-api-spec.json', JSON.stringify(document));
+    }
   }
 
   await app.listen(servicePort);
