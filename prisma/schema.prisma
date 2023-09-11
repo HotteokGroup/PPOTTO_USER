@@ -27,6 +27,8 @@ model User {
   UserTermsOfServiceAgreement UserTermsOfServiceAgreement[]
   /// [고객 소셜연동정보] User ---< UserSocialAuthentication
   UserSocialAuthentication    UserSocialAuthentication[]
+  /// [고객 파일정보] User ---< UserFile
+  UserFile                    UserFileStore[]
 
   // Index
   @@index([nickName], name: "nickName")
@@ -111,4 +113,33 @@ model UserSocialAuthentication {
 enum UserSocialAuthenticationType {
   GOOGLE
   APPLE
+}
+
+/// 고객 파일정보
+model UserFileStore {
+  id                    String          @id @default(cuid())
+  contentType           FileContentType
+  userId                Int?
+  contentId             String?
+  fileName              String?
+  originalUrl           String?
+  originalCompressedUrl String?
+  smallUrl              String?
+  mediumUrl             String?
+  largeUrl              String?
+  deletedAt             DateTime?
+  createdAt             DateTime        @default(now())
+  /// relations
+  /// UserFile >--- User
+  User                  User?           @relation(fields: [userId], references: [id])
+
+  // index
+  @@index([userId], name: "userId")
+  @@index([contentId], name: "contentId")
+}
+
+/// 파일 유형
+enum FileContentType {
+  FEED_IMAGE
+  PROFILE_IMAGE
 }

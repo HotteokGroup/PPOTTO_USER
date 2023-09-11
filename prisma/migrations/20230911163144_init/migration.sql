@@ -75,6 +75,26 @@ CREATE TABLE `UserSocialAuthentication` (
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+-- CreateTable
+CREATE TABLE `UserFileStore` (
+    `id` VARCHAR(191) NOT NULL,
+    `contentType` ENUM('FEED_IMAGE', 'PROFILE_IMAGE') NOT NULL,
+    `userId` INTEGER NULL,
+    `contentId` VARCHAR(191) NULL,
+    `fileName` VARCHAR(191) NULL,
+    `originalUrl` VARCHAR(191) NULL,
+    `originalCompressedUrl` VARCHAR(191) NULL,
+    `smallUrl` VARCHAR(191) NULL,
+    `mediumUrl` VARCHAR(191) NULL,
+    `largeUrl` VARCHAR(191) NULL,
+    `deletedAt` DATETIME(3) NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
+    INDEX `userId`(`userId`),
+    INDEX `contentId`(`contentId`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 -- AddForeignKey
 ALTER TABLE `UserIdentityVerification` ADD CONSTRAINT `UserIdentityVerification_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
@@ -86,3 +106,6 @@ ALTER TABLE `UserTermsOfServiceAgreement` ADD CONSTRAINT `UserTermsOfServiceAgre
 
 -- AddForeignKey
 ALTER TABLE `UserSocialAuthentication` ADD CONSTRAINT `UserSocialAuthentication_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `UserFileStore` ADD CONSTRAINT `UserFileStore_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
