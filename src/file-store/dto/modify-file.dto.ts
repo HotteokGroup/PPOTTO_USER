@@ -3,6 +3,11 @@ import { FileContentType } from '@prisma/client';
 import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class ModifyFileRequest {
+  @ApiProperty({ description: '고객 아이디' })
+  @IsNumber()
+  @IsOptional()
+  userId?: number;
+
   @ApiProperty({ description: '파일 유형 (프로필 이미지, 피드 이미지)', enum: FileContentType })
   @IsEnum(FileContentType)
   @IsOptional()
@@ -13,40 +18,30 @@ export class ModifyFileRequest {
   @IsOptional()
   contentId?: string;
 
-  @ApiProperty({ description: '고객 아이디' })
-  @IsNumber()
-  @IsOptional()
-  userId?: number;
-
-  @ApiProperty({ description: '파일명' })
-  @IsString()
-  @IsOptional()
-  fileName?: string;
-
   @ApiProperty({ description: '원본 주소' })
   @IsString()
   @IsOptional()
-  originalUrl?: string;
+  originalFileUrl?: string;
 
-  @ApiProperty({ description: '원본 최대비율 주소' })
+  @ApiProperty({ description: '작은 섬네일 주소' })
   @IsString()
   @IsOptional()
-  originalCompressedUrl?: string;
+  smallThumbnailUrl?: string;
 
-  @ApiProperty({ description: '작은이미지 주소' })
+  @ApiProperty({ description: '중간 섬네일 주소' })
   @IsString()
   @IsOptional()
-  smallUrl?: string;
+  mediumThumbnailUrl?: string;
 
-  @ApiProperty({ description: '중간이미지 주소' })
+  @ApiProperty({ description: '큰 섬네일 주소' })
   @IsString()
   @IsOptional()
-  mediumUrl?: string;
+  largeThumbnailUrl?: string;
 
-  @ApiProperty({ description: '큰이미지 주소' })
+  @ApiProperty({ description: '콘텐츠 관계 해제일' })
   @IsString()
   @IsOptional()
-  largeUrl?: string;
+  disconnectedAt?: string;
 }
 
 export class ModifyFileResponse {
