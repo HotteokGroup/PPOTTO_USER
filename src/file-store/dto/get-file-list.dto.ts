@@ -41,12 +41,12 @@ export class GetFileListItem {
   id: string;
 
   @Expose()
-  @ApiProperty({ description: '파일 유형 (프로필 이미지, 피드 이미지)', enum: FileContentType })
-  contentType: FileContentType;
-
-  @Expose()
   @ApiProperty({ description: '고객 아이디', example: 1 })
   userId: number;
+
+  @Expose()
+  @ApiProperty({ description: '파일 유형 (프로필 이미지, 피드 이미지)', enum: FileContentType })
+  contentType: FileContentType;
 
   @Expose()
   @ApiProperty({ description: '연결된 콘텐츠 아이디', example: '1' })
@@ -57,28 +57,24 @@ export class GetFileListItem {
   fileName?: string;
 
   @Expose()
-  @ApiProperty({ description: '원본 주소', example: 'uploads/test.jpg' })
-  originUrl?: string;
+  @ApiProperty({ description: '원본 파일 주소', example: 'output/originalCompressed.webp' })
+  originalFileUrl?: string;
 
   @Expose()
-  @ApiProperty({ description: '원본 최대비율 주소', example: 'output/originalCompressed.webp' })
-  originalCompressedUrl?: string;
+  @ApiProperty({ description: '작은 섬네일 주소', example: 'output/small.webp' })
+  smallThumbnailUrl?: string;
 
   @Expose()
-  @ApiProperty({ description: '작은이미지 주소', example: 'output/small.webp' })
-  smallUrl?: string;
+  @ApiProperty({ description: '중간 섬네일 주소', example: 'output/medium.webp' })
+  mediumThumbnailUrl?: string;
 
   @Expose()
-  @ApiProperty({ description: '중간이미지 주소', example: 'output/medium.webp' })
-  mediumUrl?: string;
+  @ApiProperty({ description: '큰 섬네일 주소', example: 'output/large.webp' })
+  largeThumbnailUrl?: string;
 
   @Expose()
-  @ApiProperty({ description: '큰이미지 주소', example: 'output/large.webp' })
-  largeUrl?: string;
-
-  @Expose()
-  @ApiProperty({ description: '삭제일', example: '2021-01-01T00:00:00.000Z' })
-  deletedAt?: Date;
+  @ApiProperty({ description: '콘텐츠 관계 해제일', example: '2021-01-01T00:00:00.000Z' })
+  disconnectedAt?: Date;
 
   @Expose()
   @ApiProperty({ description: '생성일', example: '2021-01-01T00:00:00.000Z' })

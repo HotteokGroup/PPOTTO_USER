@@ -4,35 +4,29 @@ export class ModifyFileCommand {
   /** 파일 아이디 */
   id: string;
 
+  /** 고객 아이디 */
+  userId?: number;
+
   /** 파일 유형 (프로필 이미지, 피드 이미지) */
   contentType?: FileContentType;
 
   /** 연결된 콘텐츠 아이디 */
   contentId?: string;
 
-  /** 고객 아이디 */
-  userId?: number;
+  /** 원본 파일 주소 */
+  originalFileUrl?: string;
 
-  /** 파일명 */
-  fileName?: string;
+  /** 작은 섬네일 주소 */
+  smallThumbnailUrl?: string;
 
-  /** 원본 주소 */
-  originalUrl?: string;
+  /** 중간 섬네일 주소 */
+  mediumThumbnailUrl?: string;
 
-  /** 원본 최대비율 주소 */
-  originalCompressedUrl?: string;
+  /** 큰 섬네일 주소 */
+  largeThumbnailUrl?: string;
 
-  /** 작은이미지 주소 */
-  smallUrl?: string;
-
-  /** 중간이미지 주소 */
-  mediumUrl?: string;
-
-  /** 큰이미지 주소 */
-  largeUrl?: string;
-
-  /** 삭제일 */
-  deletedAt?: string;
+  /** 콘텐츠 관계 해제일 */
+  disconnectedAt?: string;
 
   constructor(params: ModifyFileCommand) {
     Object.assign(this, params);
