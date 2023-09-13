@@ -85,6 +85,15 @@ export const ERROR_CODE = dynamicRecord({
     message: '존재하지 않는 약관입니다.',
     status: HttpStatus.NOT_FOUND,
   },
+
+  /**
+   * 파일
+   */
+  FILE_NOT_FOUND: {
+    errorCode: 'FILE_NOT_FOUND',
+    message: '존재하지 않는 파일입니다.',
+    status: HttpStatus.NOT_FOUND,
+  },
 });
 
 // 스웨거 Exception Description을 위한 데코레이터
