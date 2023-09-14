@@ -1,7 +1,7 @@
 import { HttpStatus, applyDecorators } from '@nestjs/common';
 import { ApiBadRequestResponse, ApiInternalServerErrorResponse, ApiNotFoundResponse } from '@nestjs/swagger';
 
-interface ErrorObject<T> {
+export interface ErrorObject<T> {
   errorCode: T;
   message: string;
   status: HttpStatus;
