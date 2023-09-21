@@ -20,10 +20,10 @@ export class GetUserInfoQueryResult {
   password: string;
 
   /** 프로필 사진 */
-  profileImage: string;
+  profileImage?: string;
 
   /** 회원 삭제일 */
-  deletedAt: Date;
+  deletedAt?: Date;
 
   /** 프로필 마지막 업데이트일 */
   updatedAt: Date;
@@ -40,7 +40,7 @@ export class GetUserInfoQueryResult {
     /** 약관 아이디 */
     termsOfServiceId: number;
     /** 약관동의 해제일 */
-    deletedAt: Date;
+    deletedAt?: Date;
     /** 마지막 업데이트일 */
     updatedAt: Date;
     /** 약관동의일 */

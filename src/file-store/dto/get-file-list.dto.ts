@@ -12,7 +12,7 @@ export class GetFileListRequest {
   @Transform(({ value }) => (Array.isArray(value) ? value : [value]))
   id?: string[];
 
-  @ApiProperty({ description: '파일 유형 (프로필 이미지, 피드 이미지)' })
+  @ApiProperty({ description: '파일 유형 (프로필 이미지, 피드 이미지)', enum: FileContentType, isArray: true })
   @IsOptional()
   @IsArray()
   @IsEnum(FileContentType, { each: true })
@@ -78,7 +78,7 @@ export class GetFileListItem {
 
   @Expose()
   @ApiProperty({ description: '생성일', example: '2021-01-01T00:00:00.000Z' })
-  createdAt?: Date;
+  createdAt: Date;
 }
 
 @Exclude()

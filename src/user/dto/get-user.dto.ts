@@ -35,11 +35,11 @@ export class GetUserResponse {
 
   @Expose()
   @ApiProperty({ description: '유저 프로필 사진', example: null })
-  profileImage: string;
+  profileImage?: string;
 
   @Expose()
   @ApiProperty({ description: '유저 삭제일', example: null })
-  deletedAt: Date;
+  deletedAt?: Date;
 
   @Expose()
   @ApiProperty({ description: '유저 마지막 업데이트일', example: '2021-07-01T00:00:00.000Z' })

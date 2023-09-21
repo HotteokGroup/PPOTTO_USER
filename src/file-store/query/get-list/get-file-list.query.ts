@@ -54,7 +54,7 @@ export class GetFileListQueryResult {
     deletedAt?: Date;
 
     /** 생성일 */
-    createdAt?: Date;
+    createdAt: Date;
   }[];
 
   constructor(params: GetFileListQueryResult) {
