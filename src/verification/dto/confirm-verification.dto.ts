@@ -29,7 +29,7 @@ export class ConfirmVerificationResponse {
   remaining: number;
 
   @Expose()
-  @ApiProperty({ description: '인증 타입', example: UserVerificationType.EMAIL })
+  @ApiProperty({ description: '인증 타입', example: UserVerificationType.EMAIL, enum: UserVerificationType })
   verificationType: UserVerificationType;
 
   @Expose()

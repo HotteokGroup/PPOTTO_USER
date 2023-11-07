@@ -4,7 +4,7 @@ import { Exclude, Expose } from 'class-transformer';
 import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, ValidateIf } from 'class-validator';
 
 export class SendVerificationRequest {
-  @ApiProperty({ description: '인증 타입', example: UserVerificationType.EMAIL })
+  @ApiProperty({ description: '인증 타입', example: UserVerificationType.EMAIL, enum: UserVerificationType })
   @IsEnum(UserVerificationType)
   @IsNotEmpty()
   verificationType: UserVerificationType;
