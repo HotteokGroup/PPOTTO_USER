@@ -49,6 +49,9 @@ export class ConfirmVerificationHandler
       id,
       result: isMatched,
       remaining: this.MAXIMUM_VERIFICATION_COUNT - failCount,
+      verificationType: verification.verificationType,
+      userId: verification.userId,
+      emailAddress: verification.emailAddress,
     });
   }
 }
