@@ -42,9 +42,6 @@ jobs:
       - name: 의존성 설치
         run: pnpm i
 
-      - name: openAPI 폴더 생성
-        run: mkdir open-api
-
       - name: 빌드
         run: pnpm run build
 
@@ -54,8 +51,13 @@ jobs:
       - name: 실행정보 표시 2
         run: cd dist && ls -al
 
+      - name: prisma 의존성 해결
+        run: apt-get update -y && apt-get install -y openssl
+
       - name: json Doc 생성
         run : pnpm run generate:open-api-spec
+        env:
+          NODE_ENV: offline
 
-      - name: 결과 정보 표시
-        run: cat open-api/open-api-spec.json
+      - name: 결과 로깅 
+        run: cd open-api && ls -al && cat open-api-spec.json
