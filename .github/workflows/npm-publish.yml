@@ -1,0 +1,56 @@
+name: User API Client NPM Publish
+
+# master 브랜치 푸시 시 자동실행
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 프로젝트 체크아웃
+        uses: actions/checkout@v4
+
+      - name: 실행정보 표시
+        run: ls -al
+
+      - name: PNPM 사용
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: NodeJS 실행환경 구성
+        run: |
+          NODE_VERSION=$(cat .nvmrc)
+          echo "Using Node.js $NODE_VERSION"
+          echo "::set-env name=NODE_VERSION::$NODE_VERSION"
+        shell: bash
+
+      - name: NodeJS ${{ env.NODE_VERSION }} 버전 사용
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: 의존성 설치
+        run: pnpm i
+
+      - name: openAPI 폴더 생성
+        run: mkdir open-api
+
+      - name: 빌드
+        run: pnpm run build
+
+      - name: 실행정보 표시 1
+        run: ls -al
+
+      - name: 실행정보 표시 2
+        run: cd dist && ls -al
+
+      - name: json Doc 생성
+        run : pnpm run generate:open-api-spec
+
+      - name: 실행정보 표시
+        run: ls -al
