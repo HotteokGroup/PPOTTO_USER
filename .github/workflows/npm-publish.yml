@@ -52,5 +52,5 @@ jobs:
       - name: json Doc 생성
         run : pnpm run generate:open-api-spec
 
-      - name: 실행정보 표시
-        run: ls -al
+      - name: 결과 정보 표시
+        run: cat open-api/open-api-spec.json
