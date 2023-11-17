@@ -38,4 +38,4 @@ lerna-debug.log*
 environments/docker
 
 # openApi
-open-api
+open-api-spec.json
