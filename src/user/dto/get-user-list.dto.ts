@@ -33,11 +33,11 @@ export class GetUserListItem {
   nickName: string;
 
   @Expose()
-  @ApiProperty({ description: '유저 프로필 사진', example: null })
+  @ApiProperty({ description: '유저 프로필 사진', example: null, nullable: true })
   profileImage: string;
 
   @Expose()
-  @ApiProperty({ description: '유저 삭제일', example: null })
+  @ApiProperty({ description: '유저 삭제일', example: null, nullable: true })
   deletedAt: Date;
 
   @Expose()
