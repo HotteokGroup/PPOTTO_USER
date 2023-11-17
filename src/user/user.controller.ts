@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Patch, Param, ParseIntPipe, Get } from '@nestjs/common';
+import { Controller, Post, Body, Patch, Param, ParseIntPipe, Get, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { plainToInstance } from 'class-transformer';
 
@@ -8,11 +8,22 @@ import { LoginUserByEmailRequest, LoginUserByEmailResponse } from './dto/login-b
 import { ModifyUserRequest } from './dto/modify-user.dto';
 import { UserService } from './user.service';
 import { ERROR_CODE, GenerateSwaggerDocumentByErrorCode } from '../lib/exception/error.constant';
+import { GetUserListRequest, GetUserListResponse } from './dto/get-user-list.dto';
 
 @Controller('user')
 @ApiTags('회원정보')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @Get()
+  @ApiOperation({
+    summary: '회원 리스트 조회',
+    description: '회원 리스트를 조회합니다.',
+  })
+  @GenerateSwaggerDocumentByErrorCode([ERROR_CODE.INTERNAL_SERVER_ERROR])
+  async getUserList(@Query() params: GetUserListRequest) {
+    return plainToInstance(GetUserListResponse, await this.userService.getUserList(params));
+  }
 
   @Post()
   @ApiOperation({

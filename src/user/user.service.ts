@@ -5,6 +5,7 @@ import { CreateUserCommand, CreateUserCommandResult } from './command/create/cre
 import { LoginByEmailCommand, LoginByEmailCommandResult } from './command/login-by-email/login-by-email.command';
 import { ModifyUserCommand, ModifyUserCommandResult } from './command/modify/modify-user.command';
 import { GetUserInfoQuery, GetUserInfoQueryResult } from './query/get-user-info/get-user-info.query';
+import { GetUserListQuery, GetUserListQueryResult } from './query/get-user-list/get-user-list.query';
 
 @Injectable()
 export class UserService {
@@ -13,6 +14,12 @@ export class UserService {
     private readonly queryBus: QueryBus,
   ) {}
 
+  /**
+   * 고객 리스트 조회
+   */
+  async getUserList(params: GetUserListQuery) {
+    return this.queryBus.execute<GetUserListQuery, GetUserListQueryResult>(new GetUserListQuery(params));
+  }
   /**
    * 고객 생성
    */
