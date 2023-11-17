@@ -8,9 +8,10 @@ import { GetUserInfoHandler } from './query/get-user-info/get-user-info.handler'
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { PrismaModule } from '../lib/prisma/prisma.module';
+import { GetUserListHandler } from './query/get-user-list/get-user-list.handler';
 
 const UserCommandHandlerList = [CreateUserHandler, ModifyUserHandler, LoginByEmailHandler];
-const UserQueryHandlerList = [GetUserInfoHandler];
+const UserQueryHandlerList = [GetUserInfoHandler, GetUserListHandler];
 
 @Module({
   imports: [PrismaModule, CqrsModule],
